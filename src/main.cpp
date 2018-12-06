@@ -131,18 +131,29 @@ int main(){
     Num.Return_Data(data);
     Num_Draw(data);
 
-    for(int loop = 1; loop <= 10; loop++){
-        if(Check_Brank(&Num) != 0){
+    int old_brank_count = 81;
+    int loop = 1;
+    
+    while(1){
+        int new_brank_count = Check_Brank(&Num);
+
+        // break and exit
+        if(new_brank_count == old_brank_count || new_brank_count == 0) break;
+
+        // check process
+        if(new_brank_count != 0){
             for(int i = 0; i < 9; i++){
                 for(int j = 0; j < 9; j++){
                     Check(i, j, &Num);
                 }
             }
-        }
-        cout << endl << loop << " Loop Result : Brank = " << Check_Brank(&Num);
+            cout << endl << loop << " Loop Result : Brank = " << Check_Brank(&Num);
+            Num.Return_Data(data);
+            Num_Draw(data);
+            loop++;
+            old_brank_count = new_brank_count;
+        } // end check process
 
-        Num.Return_Data(data);
-        Num_Draw(data);
-    }
+    } //end while
 
 }
