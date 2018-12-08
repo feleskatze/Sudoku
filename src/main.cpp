@@ -124,10 +124,10 @@ int Check_Brank(Number *Num){
 }
 
 
-int main(){
+int Sudoku(string Filename){
     Number Num;
     int data[9*9];
-    Num.CSV_Reader("test.csv");
+    Num.CSV_Reader(Filename);
     Num.Return_Data(data);
     Num_Draw(data);
 
@@ -156,4 +156,17 @@ int main(){
 
     } //end while
 
+}
+
+
+
+int main(int argc, char *argv[]){
+    if(argc == 2){
+        Sudoku(string(argv[1]));
+    }else{
+        string Filename;
+        cout << "Filename (ex. Sample.csv) >>";
+        cin >> Filename;
+        Sudoku(Filename);
+    }
 }
